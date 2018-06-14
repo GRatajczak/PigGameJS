@@ -22,21 +22,42 @@ document.getElementById('score-1').textContent = '0';
 document.getElementById('current-0').textContent = '0';
 document.getElementById('current-1').textContent = '0';
 document.querySelector('.dice').style.display ='none'; 
-
 document.querySelector('.btn-roll').addEventListener('click',btn);
+
+
 function btn(){
+
+
+
+
+
+
     dice = Math.floor(Math.random()*6)+1;
     var diceDOM=   document.querySelector('.dice');
    diceDOM.style.display = 'block';
    diceDOM.src = 'dice-'+dice+".png";
 
+}//Funkcje do zadania ze strony 
+/*
+function Multiply(){
+    let first = document.getElementById('firstNumber').value;
+    let second = document.getElementById('secondNumber').value;
+    var x = first*second;
+    document.getElementById("show").innerHTML =x;
 }
+function Divide(){
+    var first = document.getElementById('firstNumber').value;
+    var second = document.getElementById('secondNumber').value;
+    if(isNaN(second)||second==0){
+        document.getElementById("show").innerHTML ="Nie mozna tak zrobic";
+    }else{
+      
+        var y= first/second;
+        document.getElementById("show").innerHTML =y;
+    }
 
-
-
-
-
-
+}
+*/
 
 
 
