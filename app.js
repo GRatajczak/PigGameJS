@@ -8,56 +8,95 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
-
-var scores, roundScore, activePlayer, dice;
-
-scores = [0,0];
-roundScore = 0;
-activePlayer = 1;
-
-
+//Valuses to game
+var scores, roundScore, activePlayer,gamePlaying;
+init();
+//Download variables from HTML
 //document.querySelector('#current-'+activePlayer).textContent = dice;
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
-document.querySelector('.dice').style.display ='none'; 
-document.querySelector('.btn-roll').addEventListener('click',btn);
 
-
-function btn(){
-
-
-
-
-
-
-    dice = Math.floor(Math.random()*6)+1;
+document.querySelector('.btn-roll').addEventListener('click',function(){
+//function to change a  dice 
+    if (gamePlaying){
+   var dice = Math.floor(Math.random()*6)+1;
     var diceDOM=   document.querySelector('.dice');
    diceDOM.style.display = 'block';
    diceDOM.src = 'dice-'+dice+".png";
+// function to chose a player turn
+if (dice !==  1 ){
+    // add score    
+    roundScore += dice; 
+    document.querySelector('#current-'+ activePlayer).textContent = roundScore;
+}else{
+nextPlayer();
 
-}//Funkcje do zadania ze strony 
-/*
-function Multiply(){
-    let first = document.getElementById('firstNumber').value;
-    let second = document.getElementById('secondNumber').value;
-    var x = first*second;
-    document.getElementById("show").innerHTML =x;
 }
-function Divide(){
-    var first = document.getElementById('firstNumber').value;
-    var second = document.getElementById('secondNumber').value;
-    if(isNaN(second)||second==0){
-        document.getElementById("show").innerHTML ="Nie mozna tak zrobic";
+}
+});
+//Hold button 
+document.querySelector('.btn-hold').addEventListener('click',function(){
+    if(gamePlaying){
+    //add current score to global score
+    scores[activePlayer] += roundScore;
+    document.querySelector('#score-' + activePlayer).textContent= scores[activePlayer];
+    //update the UI 
+    document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+    // check if the player won the game
+    if (scores[activePlayer] >= 10){
+        document.querySelector('#name-'+activePlayer).textContent= 'Winner';
+        document.querySelector('.dice').style.display = 'none';
+        document.querySelector('.player-' +activePlayer+ '-panel').classList.add('winner');
+        document.querySelector('.player-' +activePlayer+ '-panel').classList.remove('active');
+        gamePlaying= false;
     }else{
-      
-        var y= first/second;
-        document.getElementById("show").innerHTML =y;
+        nextPlayer();
+    }
     }
 
+
+});
+
+function nextPlayer(){
+
+     //next player turn
+     activePlayer === 0 ?/*If activePlayer = 0 then set he on 1 or activePlayer = 1 then set 0
+     */activePlayer = 1: activePlayer = 0;
+     roundScore= 0;
+     document.getElementById('current-0').textContent = 0;
+     document.getElementById('current-1').textContent = 0;
+     document.querySelector('.player-0-panel').classList.toggle('active');
+     document.querySelector('.player-1-panel').classList.toggle('active');
+     // document.querySelector('.player-0-panel').classList.remove('active');
+    // document.querySelector('.player-1-panel').classList.add('active');
+    document.querySelector('.dice').style.display = 'none';
 }
-*/
+
+document.querySelector('.btn-new').addEventListener('click',init);
+
+function init(){
+    scores = [0, 0];
+    activePlayer = 0;
+    roundScore = 0;
+    gamePlaying = true;
+    
+    document.querySelector('.dice').style.display = 'none';
+
+    document.getElementById('score-0').textContent = '0';
+    document.getElementById('score-1').textContent = '0';
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+    document.getElementById('name-0').textContent = 'Player 1';
+    document.getElementById('name-1').textContent = 'Player 2';
+
+
+
+
+}
+
+
+
+
+
+
 
 
 
