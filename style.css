@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+
 }
 
 .clearfix::after {
@@ -45,6 +45,10 @@ body {
     padding: 100px;
 }
 
+.rolled-one {
+    box-shadow: 0px 0px 100px 50px #EB4D4D;
+
+}
 
 
 /**********************************************
@@ -66,12 +70,17 @@ body {
     text-align: center;
     font-size: 80px;
     font-weight: 100;
-    color: #EB4D4D;
+    color: rgb(209, 106, 106);
     margin-bottom: 130px;
 }
 
-.active { background-color: #f7f7f7; }
-.active .player-name { font-weight: 300; }
+.active {
+    background-color: #f7f7f7;
+}
+
+.active .player-name {
+    font-weight: 300;
+}
 
 .active .player-name::after {
     content: "\2022";
@@ -80,7 +89,7 @@ body {
     color: #EB4D4D;
     top: -7px;
     right: 10px;
-    
+
 }
 
 .player-current-box {
@@ -119,8 +128,13 @@ button {
     transition: background-color 0.3s, color 0.3s;
 }
 
-button:hover { font-weight: 600; }
-button:hover i { margin-right: 20px; }
+button:hover {
+    font-weight: 600;
+}
+
+button:hover i {
+    margin-right: 20px;
+}
 
 button:focus {
     outline: none;
@@ -134,12 +148,30 @@ i {
     line-height: 1;
     vertical-align: text-top;
     margin-top: -4px;
-    transition: margin 0.3s;
+    transition: 0.3s;
+
 }
 
-.btn-new { top: 45px;}
-.btn-roll { top: 403px;}
-.btn-hold { top: 467px;}
+.ion-ios-loop {
+    transform: rotate(0deg);
+
+}
+
+.btn-new {
+    top: 45px;
+}
+
+.btn-roll {
+    top: 403px;
+}
+
+.btn-hold {
+    top: 467px;
+}
+
+.btn-roll:hover .ion-ios-loop {
+    transform: rotate(360deg);
+}
 
 .dice {
     position: absolute;
@@ -150,5 +182,11 @@ i {
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
 }
 
-.winner { background-color: #f7f7f7; }
-.winner .player-name { font-weight: 300; color: #EB4D4D; }
+.winner {
+    background-color: #f7f7f7;
+}
+
+.winner .player-name {
+    font-weight: 300;
+    color: #EB4D4D;
+}
